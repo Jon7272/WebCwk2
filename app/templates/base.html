@@ -1,0 +1,86 @@
+<html>
+  <head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        background-color: #f0f0f0; /* Light grey background */
+      }
+    </style>
+
+  </head>
+  <body>
+  
+   <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{{url_for('home', user_id=user.id)}}">Home <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="groceriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Groceries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="groceriesDropdown">
+              <a class="dropdown-item" href="{{ url_for('category', user_id=user.id, cat='Meats') }}">Meats</a>
+              <a class="dropdown-item" href="{{ url_for('category', user_id=user.id, cat='Vegetables') }}">Vegetables</a>
+              <a class="dropdown-item" href="{{ url_for('category', user_id=user.id, cat='Dairy') }}">Dairy</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url_for('category', user_id=user.id, cat='All') }}">View All</a>
+            </div>
+          </li>
+    
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <form class="d-flex" action="{{ url_for('search') }}" method="GET">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('checkout', user_id=user.id) }}">Checkout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('welcome') }}">Logout</a></li>
+          
+        </ul>
+      </div>
+    </nav>
+    <head>
+    
+      {% if title %}
+          <title>{{ title }}</title>
+          {% else %}
+          <title> No title specified</title>
+          {% endif %}
+      </head>
+      <body>
+      
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-0"></div>
+              <div class="col-12">
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success">
+                         {{ message }}
+                    </div>
+                    {% endfor %}
+        
+                  {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}
+              </div>
+            </div>
+          </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

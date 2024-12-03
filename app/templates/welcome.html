@@ -1,0 +1,13 @@
+{% extends "welcomebase.html" %}
+{% block content %}
+
+<div class="text-center my-5">
+    <h1 class="display-4">Welcome to Jon's Online Shopping</h1>
+    <h2 class="mb-4 text-muted">Please Login or Sign Up to Continue</h2>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg mx-2">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-outline-danger btn-lg mx-2">Sign Up</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "welcomebase.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-body p-4">
+            <h1 class="text-center mb-4">Sign Up to Start Shopping</h1>
+            <form action="" method="post" name="Sign Up">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    <label for="username" class="font-weight-bold">Username</label>
+                    {{ form.username(class_='form-control', id='username', placeholder='Enter Username...') }}
+                    {% for error in form.username.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="font-weight-bold">Password</label>
+                    {{ form.password(class_='form-control', id='password', placeholder='Enter Password...') }}
+                    {% for error in form.password.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" name="submit_button" value="Sign Up" class="btn btn-outline-danger btn-lg btn-block">Sign Up</button>
+                </div>
+            </form>
+
+            <hr class="my-4">
+        
+            <div class="text-center">
+                <p class="mb-2">Already have an account?</p>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg btn-block">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/form-placeholder.js') }}"></script>
+
+{% endblock %}
